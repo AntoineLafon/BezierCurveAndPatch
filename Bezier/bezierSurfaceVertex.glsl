@@ -15,11 +15,11 @@ out vec2 aTex;
 out vec3 aColor;
 
 void main(){
-	vec4 normal = texture(normalTexture, textureCoord);
-	vec3 newPosition = texture(bezierTexture, textureCoord).rgb;
+	vec4 normal = texelFetch(normalTexture, ivec2(position.xz), 0);
+	vec3 newPosition = vec3(texelFetch(bezierTexture, ivec2(position.xz), 0));   //texture(bezierTexture, textureCoord).rgb;
 	gl_Position = projection * view * vec4(newPosition, 1.0f);
 	aNorm = normal;
-	aPos = position;
+	aPos = newPosition;
 	aTex = textureCoord;
 	switch(mode){
 	case 0:

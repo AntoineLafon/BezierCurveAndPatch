@@ -31,7 +31,7 @@ void BezierPatchMesh::generatePlane(int nbPoints)
 			current = addVertex();
 			float x = (float)i / (float)(nbPoints - 1);
 			float y = (float)j / (float)(nbPoints - 1);
-			current->setCoord(glm::vec3(x, 0.0f, y));
+			current->setCoord(glm::vec3(i, 0.0f, j));
 			current->setTextureCoord(glm::vec2(x, y));
 			if (i != 0 && j != 0) {
 				addQuad(current, temp[j], temp[j - 1], last);
