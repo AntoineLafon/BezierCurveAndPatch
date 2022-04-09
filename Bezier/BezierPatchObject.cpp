@@ -18,6 +18,8 @@ BezierPatchObject::BezierPatchObject()
 	genControlPolyBuffers();
 	updateBezierPatchBuffers();
 	updateControlPolyBuffers();
+
+	_bezierSurfaceTexture->debug();
 }
 
 void BezierPatchObject::drawCurve(ShaderProgram* shaderProgram, Camera* camera)

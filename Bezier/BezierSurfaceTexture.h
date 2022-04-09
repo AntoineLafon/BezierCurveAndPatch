@@ -11,6 +11,7 @@ public:
 	void setControlPoint(int size, std::vector<glm::vec4>* data);
 	void computeBezierPoints();
 	void computeNormal();
+	void debug();
 
 	unsigned int getBezierTexture() { return _bezierTextureID;  }
 	unsigned int getNormalTexture() { return _bezierNormalTextureID; }

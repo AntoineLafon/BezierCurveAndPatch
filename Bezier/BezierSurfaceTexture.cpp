@@ -53,6 +53,21 @@ void BezierSurfaceTexture::computeNormal()
 	glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 
+void BezierSurfaceTexture::debug()
+{
+	float* data = (float *)malloc(4 * _bezierTextureSize * _bezierTextureSize * sizeof(float));
+	glBindTexture(GL_TEXTURE_2D, _bezierTextureID);
+	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_FLOAT, data);
+	//print data as an array
+	for (int i = 0; i < _bezierTextureSize; i++)
+	{
+		for (int j = 0; j < _bezierTextureSize; j++)
+		{
+			std::cout << data[4 * (i * _bezierTextureSize + j)] << " " << data[4 * (i * _bezierTextureSize + j) + 1] << " " << data[4 * (i * _bezierTextureSize + j) + 2] << " " << data[4 * (i * _bezierTextureSize + j) + 3] << std::endl;
+		}
+	}
+}
+
 void BezierSurfaceTexture::initTextures()
 {
 	glGenTextures(1, &_bezierTextureID);
@@ -60,8 +75,8 @@ void BezierSurfaceTexture::initTextures()
 	glGenTextures(1, &_bezierNormalTextureID);
 
 	glBindTexture(GL_TEXTURE_2D, _bezierTextureID);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	

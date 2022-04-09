@@ -29,14 +29,16 @@ float bernstein(float t, int i, int n)
 
 void main() {
 	ivec2 coord = ivec2(gl_GlobalInvocationID);
-	vec4 bp = vec4(0.0f);
-	for (int i = 0; i < ControlSize; i++){
-		for(int j = 0; j < ControlSize; j++){
-			vec4 cp = imageLoad(controlPoints, ivec2(i, j));
-			float a = bernstein(float(coord.x) / (bezierSize - 1), i, ControlSize - 1);
-			float b = bernstein(float(coord.y) / (bezierSize - 1), j, ControlSize - 1);
-			bp +=  a * b * cp;
+	if(coord.x < bezierSize && coord.y < bezierSize){
+		vec4 bp = vec4(0.0f);
+		for (int i = 0; i < ControlSize; i++){
+			for(int j = 0; j < ControlSize; j++){
+				vec4 cp = imageLoad(controlPoints, ivec2(i, j));
+				float a = bernstein(float(coord.x) / (bezierSize - 1), i, ControlSize - 1);
+				float b = bernstein(float(coord.y) / (bezierSize - 1), j, ControlSize - 1);
+				bp +=  a * b * cp;
+			}
 		}
+		imageStore(bezierPoints, coord, bp);
 	}
-	imageStore(bezierPoints, coord, bp);
 }
