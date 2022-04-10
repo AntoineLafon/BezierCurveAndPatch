@@ -170,9 +170,11 @@ void OpenGLWidget::setBezierMode(int mode)
 {
 	if (mode == 1) {
 		_handler = _bezierCurveHandler;
+		//_handler->resize(this->width(), this->height());
 	}
 	else {
 		_handler = _bezierPatchHandler;
+		//_handler->resize(this->width(), this->height());
 	}
 	update();	
 }

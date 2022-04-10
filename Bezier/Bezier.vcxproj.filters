@@ -147,11 +147,11 @@
     <ClInclude Include="Handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComputeShader.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="BezierSurfaceTexture.h">
       <Filter>BezierPatch</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputeShader.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
