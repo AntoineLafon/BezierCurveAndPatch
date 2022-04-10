@@ -51,11 +51,18 @@
             </widget>
            </item>
            <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Dimension selection:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2">
              <item>
               <widget class="QPushButton" name="pushButton">
                <property name="text">
-                <string>Load</string>
+                <string>Generate</string>
                </property>
               </widget>
              </item>
