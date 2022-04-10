@@ -15,9 +15,11 @@ public:
 	virtual void mouseReleaseEvent(QMouseEvent* event);
 	virtual void wheelEvent(QWheelEvent* event);
 	void wireFrame(bool checked);
+	void controlPoints(bool checked);
 
 protected:
 	bool _wireframe = false;
+	bool _controlPoints = false;
 	int _width, _height;
 };
 

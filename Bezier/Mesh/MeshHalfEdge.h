@@ -1,7 +1,4 @@
 #pragma once
-
-
-
 #include "Mesh.h"
 #include "MeshTriangle.h"
 #include "MeshVertex.h"
@@ -31,6 +28,8 @@ private:
 	Mesh* _mesh;
 	MeshTriangle* _triangle;
 	MeshHalfEdge* _next;
+
+	//link to a halfedge belonging to the neighbor triangle
 	MeshHalfEdge* _neighbor;
 	MeshVertex* _origin;
 };

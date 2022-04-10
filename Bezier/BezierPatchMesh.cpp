@@ -1,17 +1,20 @@
 #include "BezierPatchMesh.h"
 
-BezierPatchMesh::BezierPatchMesh(int nbPoints)
+BezierPatchMesh::BezierPatchMesh(unsigned int patchDimension, unsigned int controlPointDimension)
 {
-	_nbPoints = nbPoints;
-	for (int i = -(PATCH_SIZE/2); i < glm::ceil((float)PATCH_SIZE/2.0); i++) {
-		for(int j = -(PATCH_SIZE / 2); j < glm::ceil((float)PATCH_SIZE / 2.0); j++){
-			glm::vec4 position = glm::vec4( (float)i / (float)PATCH_SIZE, 0, (float)j / (float)PATCH_SIZE, 1.0f);
+	_patchDimension = patchDimension;
+	_controlPointDimension = controlPointDimension;
+	for (int i = -(_controlPointDimension/2); i < glm::ceil((float)_controlPointDimension /2.0); i++) {
+		for(int j = -(_controlPointDimension / 2); j < glm::ceil((float)_controlPointDimension / 2.0); j++){
+			glm::vec4 position = glm::vec4( (float)i / (float)_controlPointDimension, 0, (float)j / (float)_controlPointDimension, 1.0f);
 			_controlPoints.push_back(position);
 		}
 	}
-	_controlPoints[24].y = -4.5f;
+	
+	//place the middle point bellow the others to form a well
+	_controlPoints[(_controlPointDimension * _controlPointDimension) / 2].y = -4.5f;
 
-	generatePlane(_nbPoints);	
+	generatePlane(_patchDimension);	
 }
 
 
@@ -23,7 +26,7 @@ BezierPatchMesh::~BezierPatchMesh()
 void BezierPatchMesh::generatePlane(int nbPoints)
 {
 	this->clear();
-	_nbPoints = nbPoints;
+	_patchDimension = nbPoints;
 	MeshVertex* current, * last;
 	std::vector<MeshVertex*> temp;
 	for (int i = 0; i < nbPoints; i++) {
@@ -51,10 +54,10 @@ void BezierPatchMesh::generatePlane(int nbPoints)
 void BezierPatchMesh::randomize()
 {
 	_controlPoints.clear();
-	for (int i = -(PATCH_SIZE / 2); i < glm::ceil((float)PATCH_SIZE / 2.0); i++) {
-		for (int j = -(PATCH_SIZE / 2); j < glm::ceil((float)PATCH_SIZE / 2.0); j++) {
+	for (int i = -(_controlPointDimension / 2); i < glm::ceil((float)_controlPointDimension / 2.0); i++) {
+		for (int j = -(_controlPointDimension / 2); j < glm::ceil((float)_controlPointDimension / 2.0); j++) {
 			float randomY = (float)rand() / (float)RAND_MAX;
-			glm::vec4 position = glm::vec4( (float)i / (float)PATCH_SIZE, randomY, (float)j / (float)PATCH_SIZE, 1.0f);
+			glm::vec4 position = glm::vec4( (float)i / (float)_controlPointDimension, randomY * 2.0f - 1.0f, (float)j / (float)_controlPointDimension, 1.0f);
 			_controlPoints.push_back(position);
 		}
 	}

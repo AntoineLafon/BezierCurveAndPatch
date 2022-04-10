@@ -38,3 +38,8 @@ void Handler::wireFrame(bool checked)
 {
 	_wireframe = checked;
 }
+
+void Handler::controlPoints(bool checked)
+{
+	_controlPoints = checked;
+}

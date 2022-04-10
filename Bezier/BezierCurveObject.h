@@ -10,19 +10,24 @@ public:
 	BezierCurveObject();
 	void drawCurve(ShaderProgram *shaderProgram, Camera *camera);
 	void drawControlPoly(ShaderProgram *shaderProgram, Camera *camera);
+
+	//functions used by QT for interactions
 	void regenerateDistanceMesh(float distance);
 	void regenerateNumberMesh(int number);
 	void setColorMode(int mode) { _colorMode = mode; }
+	void randomize();
 	
 	float getDistance(){ return _distance; }
 	int getNumber(){ return _number; }
 	
 
 private:
+	//buffers generations and updating
 	void genBezierCurveBuffers();
 	void genControlPolyBuffers();
 	void updateBezierCurveBuffers();
 	void updateControlPolyBuffers();
+	
 	void sendLights(ShaderProgram* shaderProgram);
 
 	BezierCurveMesh* _bezierCurveMesh;

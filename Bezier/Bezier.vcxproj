@@ -55,7 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>C:\Libraries\Includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <IncludePath>C:\Libraries\Includes;$(IncludePath)</IncludePath>
@@ -135,11 +135,10 @@
     <ClInclude Include="ShaderProgram.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bezierSurfaceVertex.glsl" />
-    <None Include="bezierCurveFragment.glsl" />
-    <None Include="bezierCurveVertex.glsl" />
+    <None Include="vertexBezierSurface.glsl" />
+    <None Include="fragmentBezierCurve.glsl" />
     <None Include="BezierSurfaceCompute.glsl" />
-    <None Include="fragment.glsl" />
+    <None Include="fragmentBezierSurface.glsl" />
     <None Include="fragmentControlPoly.glsl" />
     <None Include="normalCompute.glsl" />
     <None Include="vertexBezierCurve.glsl" />

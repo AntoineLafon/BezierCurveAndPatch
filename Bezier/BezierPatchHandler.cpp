@@ -5,7 +5,7 @@ BezierPatchHandler::BezierPatchHandler(int width, int height): Handler(width, he
 	initializeOpenGLFunctions();
 	_bezierPatch = new BezierPatchObject();
 	_camera = new Camera(_width, _height, glm::vec3(0.0f, 0.0f, 2.0f));
-	_shaderCurve = new ShaderProgram("bezierSurfaceVertex.glsl", "fragment.glsl");
+	_shaderCurve = new ShaderProgram("vertexBezierSurface.glsl", "fragmentBezierSurface.glsl");
 	_shaderControlPoly = new ShaderProgram("vertexControlPoly.glsl", "fragmentControlPoly.glsl");
 }
 
@@ -16,7 +16,12 @@ void BezierPatchHandler::draw()
 	else
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	_bezierPatch->drawCurve(_shaderCurve, _camera);
-	_bezierPatch->drawControlPoly(_shaderControlPoly, _camera);
+
+	if(this->_controlPoints)
+		_bezierPatch->drawControlPoly(_shaderControlPoly, _camera);
+	
+	if (_animatePatch)
+		_bezierPatch->animate();
 }
 
 void BezierPatchHandler::resize(int width, int height)

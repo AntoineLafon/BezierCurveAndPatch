@@ -36,8 +36,6 @@ void BezierSurfaceTexture::setControlPoint(int size, std::vector<glm::vec4>* dat
 void BezierSurfaceTexture::computeBezierPoints()
 {
 	_bezierTextureCompute->use();
-	_bezierTextureCompute->setInt("bezierSize", _bezierTextureSize);
-	_bezierTextureCompute->setInt("ControlSize", 7);
 	glBindImageTexture(0, _bezierTextureID, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 	glBindImageTexture(1, _controlPointsTextureID, 0, GL_FALSE, 0, GL_READ_ONLY, GL_RGBA32F);
 	_bezierTextureCompute->execute(_bezierTextureSize / 16 + 1, _bezierTextureSize / 16 + 1, 1);
@@ -56,7 +54,7 @@ void BezierSurfaceTexture::computeNormal()
 void BezierSurfaceTexture::debug()
 {
 	float* data = (float *)malloc(4 * _bezierTextureSize * _bezierTextureSize * sizeof(float));
-	glBindTexture(GL_TEXTURE_2D, _bezierTextureID);
+	glBindTexture(GL_TEXTURE_2D, _bezierNormalTextureID);
 	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_FLOAT, data);
 	//print data as an array
 	for (int i = 0; i < _bezierTextureSize; i++)
@@ -66,6 +64,7 @@ void BezierSurfaceTexture::debug()
 			std::cout << data[4 * (i * _bezierTextureSize + j)] << " " << data[4 * (i * _bezierTextureSize + j) + 1] << " " << data[4 * (i * _bezierTextureSize + j) + 2] << " " << data[4 * (i * _bezierTextureSize + j) + 3] << std::endl;
 		}
 	}
+	free(data);
 }
 
 void BezierSurfaceTexture::initTextures()
@@ -75,21 +74,21 @@ void BezierSurfaceTexture::initTextures()
 	glGenTextures(1, &_bezierNormalTextureID);
 
 	glBindTexture(GL_TEXTURE_2D, _bezierTextureID);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	glBindTexture(GL_TEXTURE_2D, _bezierNormalTextureID);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	glBindTexture(GL_TEXTURE_2D, _controlPointsTextureID);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

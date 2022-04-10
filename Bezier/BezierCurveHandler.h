@@ -24,6 +24,7 @@ public:
 	void setBezierCurveMeshMode(int mode);
 	void regenerateDistanceMesh(float distance);
 	void regenerateNumberMesh(int number);
+	void randomize();
 	
 private:
 	BezierCurveObject* _bezierCurve;

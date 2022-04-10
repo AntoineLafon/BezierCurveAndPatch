@@ -5,7 +5,7 @@ BezierCurveHandler::BezierCurveHandler(int width, int height) : Handler(width, h
 	initializeOpenGLFunctions();	
 	_bezierCurve = new BezierCurveObject();
 	_camera = new Camera(_width, _height, glm::vec3(0.0f, 0.0f, 5.0f));
-	_shaderCurve = new ShaderProgram("VertexBezierCurve.glsl", "fragment.glsl");
+	_shaderCurve = new ShaderProgram("vertexBezierCurve.glsl", "fragmentBezierCurve.glsl");
 	_shaderControlPoly = new ShaderProgram("vertexControlPoly.glsl", "fragmentControlPoly.glsl");
 }
 
@@ -16,8 +16,10 @@ void BezierCurveHandler::draw()
 	else
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	_bezierCurve->drawCurve(_shaderCurve, _camera);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	
-	_bezierCurve->drawControlPoly(_shaderControlPoly, _camera);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if(this->_controlPoints)
+		_bezierCurve->drawControlPoly(_shaderControlPoly, _camera);
 }
 
 void BezierCurveHandler::resize(int width, int height)
@@ -29,8 +31,7 @@ void BezierCurveHandler::resize(int width, int height)
 
 void BezierCurveHandler::mouseMoveEvent(QMouseEvent* event)
 {
-	if(event->buttons() == Qt::RightButton)
-		_camera->mouseMoveEvent(MouseButton::RightClick, event->x(), event->y());
+	_camera->mouseMoveEvent(MouseButton::RightClick, event->x(), event->y());
 }
 
 void BezierCurveHandler::mousePressEvent(QMouseEvent* event)
@@ -71,5 +72,10 @@ void BezierCurveHandler::regenerateDistanceMesh(float distance)
 void BezierCurveHandler::regenerateNumberMesh(int number)
 {
 	_bezierCurve->regenerateNumberMesh(number);
+}
+
+void BezierCurveHandler::randomize()
+{
+	_bezierCurve->randomize();
 }
 

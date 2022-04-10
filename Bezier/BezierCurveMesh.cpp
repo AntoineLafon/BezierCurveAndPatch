@@ -1,7 +1,4 @@
 #include "BezierCurveMesh.h"
-#include <chrono>
-#include <ctime>
-#include <iostream>
 
 BezierCurveMesh::BezierCurveMesh()
 {
@@ -9,7 +6,6 @@ BezierCurveMesh::BezierCurveMesh()
 	_controlPoint.push_back(glm::vec2(-1.0f, 1.0f));
 	_controlPoint.push_back(glm::vec2(1.0f, -1.0f));
 	_controlPoint.push_back(glm::vec2(1.0f, 1.0f));
-	
 	generateMeshFromNumber(10);
 }
 
@@ -77,6 +73,16 @@ void BezierCurveMesh::pushControlPoint(glm::vec2 controlPoint)
 	_controlPoint.push_back(controlPoint);
 }
 
+void BezierCurveMesh::randomize()
+{
+	srand(time(NULL));
+	for (int i = 0; i < _controlPoint.size(); i++) {
+		_controlPoint[i].x = (float)(rand() % 1000) / 1000.0f * 2.0f - 1.0f;
+		_controlPoint[i].y = (float)(rand() % 1000) / 1000.0f * 2.0f - 1.0f;
+	}
+	regenerateMesh();
+}
+
 glm::vec2 BezierCurveMesh::getBezierPoint(float t, int start, int stop)
 {
 	if (start == stop) return _controlPoint[start];
@@ -87,6 +93,7 @@ glm::vec2 BezierCurveMesh::getBezierPoint(float t, int start, int stop)
 
 glm::vec2 BezierCurveMesh::findPointAtDistance(glm::vec2 startPoint, float* t, float distance)
 {
+	//if the requested point is above t = 1.0 return the point at 1.0
 	glm::vec2 endPoint = getBezierPoint(1.0f, 0, _controlPoint.size() - 1);
 	if (glm::distance(startPoint, endPoint) < distance) {
 		*t = 1.0f;

@@ -2,11 +2,14 @@
 
 BezierPatchObject::BezierPatchObject()
 {
+	start = std::chrono::system_clock::now();
+	unsigned int patchDimension = 1000;
+	unsigned int controlDimension = 7;
 	initializeOpenGLFunctions();
-	_bezierPatchMesh = new BezierPatchMesh(10);
+	_bezierPatchMesh = new BezierPatchMesh(patchDimension, controlDimension);
 	_bezierSurfaceTexture = new BezierSurfaceTexture();
-	_bezierSurfaceTexture->setBezierSize(10);
-	_bezierSurfaceTexture->setControlPoint(7, _bezierPatchMesh->getControlPoints());
+	_bezierSurfaceTexture->setBezierSize(patchDimension);
+	_bezierSurfaceTexture->setControlPoint(controlDimension, _bezierPatchMesh->getControlPoints());
 	_bezierSurfaceTexture->computeBezierPoints();
 	_bezierSurfaceTexture->computeNormal();
 
@@ -19,7 +22,9 @@ BezierPatchObject::BezierPatchObject()
 	updateBezierPatchBuffers();
 	updateControlPolyBuffers();
 
-	_bezierSurfaceTexture->debug();
+	regeneratePatch(10);
+	
+	//_bezierSurfaceTexture->debug();
 }
 
 void BezierPatchObject::drawCurve(ShaderProgram* shaderProgram, Camera* camera)
@@ -65,9 +70,10 @@ void BezierPatchObject::randomize()
 {
 	_bezierPatchMesh->randomize();
 	updateControlPolyBuffers();
-	_bezierSurfaceTexture->setControlPoint(7, _bezierPatchMesh->getControlPoints());
+	_bezierSurfaceTexture->setControlPoint(_bezierPatchMesh->getControlPointDimension(), _bezierPatchMesh->getControlPoints());
 	_bezierSurfaceTexture->computeBezierPoints();
 	_bezierSurfaceTexture->computeNormal();
+
 }
 
 void BezierPatchObject::sendLights(ShaderProgram* shaderProgram)
@@ -140,4 +146,24 @@ void BezierPatchObject::updateControlPolyBuffers()
 	glBindBuffer(GL_ARRAY_BUFFER, _controlVBO);
 	glBufferData(GL_ARRAY_BUFFER, _bezierPatchMesh->getControlPoints()->size() * sizeof(glm::vec4), _bezierPatchMesh->getControlPoints()->data(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void BezierPatchObject::animate()
+{
+	n.clear();
+	int dimension = _bezierPatchMesh->getControlPointDimension();
+	for(int i = -(dimension / 2); i < glm::ceil((float)dimension / 2.0f); i++) {
+		auto end = std::chrono::system_clock::now();
+		std::chrono::duration<double> elapsed_seconds = end - start;
+		float ms = elapsed_seconds.count();
+		float value = 0.5f * glm::cos((ms + (i * 1.0f)));
+		for(int j = -(dimension / 2); j < glm::ceil((float)dimension / 2.0f); j++) {
+			n.push_back(glm::vec4((float)i / dimension, value , (float)j / dimension, 1.0f));
+		}
+	}
+	_bezierPatchMesh->setControlPoints(n);
+	updateControlPolyBuffers();
+	_bezierSurfaceTexture->setControlPoint(_bezierPatchMesh->getControlPointDimension(), &n);
+	_bezierSurfaceTexture->computeBezierPoints();
+	_bezierSurfaceTexture->computeNormal();		
 }

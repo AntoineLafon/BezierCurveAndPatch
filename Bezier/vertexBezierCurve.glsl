@@ -26,7 +26,7 @@ void main(){
 			aColor = aPos * 0.5 + 0.5;
 			break;
 		case 2:
-			aColor = vec3(textureCoord, 0.0f);
+			aColor = vec3(textureCoord, 0.0f) * 0.5f;
 			break;
 		default:
 			break;

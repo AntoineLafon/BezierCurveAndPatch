@@ -20,9 +20,11 @@ public:
 	void setBezierPatchColorMode(int mode);
 	void setBezierPatchNumber(int number);
 	void randomize() { _bezierPatch->randomize(); }
+	void animate(bool checked) { _animatePatch = checked; }
 
 private:
 	BezierPatchObject* _bezierPatch;
+	bool _animatePatch = FALSE;
 	Camera* _camera;
 	ShaderProgram* _shaderCurve, * _shaderControlPoly;
 	int _width, _height;

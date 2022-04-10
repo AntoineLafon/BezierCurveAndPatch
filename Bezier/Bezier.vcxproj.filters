@@ -155,7 +155,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment.glsl">
+    <None Include="fragmentBezierSurface.glsl">
       <Filter>GLSL</Filter>
     </None>
     <None Include="vertexBezierCurve.glsl">
@@ -167,13 +167,10 @@
     <None Include="fragmentControlPoly.glsl">
       <Filter>GLSL</Filter>
     </None>
-    <None Include="bezierCurveVertex.glsl">
+    <None Include="fragmentBezierCurve.glsl">
       <Filter>GLSL</Filter>
     </None>
-    <None Include="bezierCurveFragment.glsl">
-      <Filter>GLSL</Filter>
-    </None>
-    <None Include="bezierSurfaceVertex.glsl">
+    <None Include="vertexBezierSurface.glsl">
       <Filter>GLSL</Filter>
     </None>
     <None Include="normalCompute.glsl">

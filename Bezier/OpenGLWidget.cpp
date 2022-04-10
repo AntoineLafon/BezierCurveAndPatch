@@ -1,13 +1,13 @@
 #include "OpenGLWidget.h"
-#include <QRadioButton>
-#include <QSlider>
-#include <QSpinBox>
 
 OpenGLWidget::OpenGLWidget(QWidget *parent)
 	: QOpenGLWidget(parent)
 {
 	ui.setupUi(this);
 	_mode = 0;
+	_timer = new QTimer(this);
+	connect(_timer, &QTimer::timeout, this, &OpenGLWidget::frequentUpdate);
+	
 }
 
 OpenGLWidget::~OpenGLWidget()
@@ -102,6 +102,12 @@ void OpenGLWidget::setBezierCurveSegmentNumber(int n)
 	update();
 }
 
+void OpenGLWidget::randomizeBezierCurve()
+{
+	_bezierCurveHandler->randomize();
+	update();
+}
+
 void OpenGLWidget::setBezierPatchColorMode()
 {
 	QRadioButton* radioButton = qobject_cast<QRadioButton*>(sender());
@@ -120,7 +126,16 @@ void OpenGLWidget::setBezierPatchColorMode()
 void OpenGLWidget::setBezierPatchMeshNumber()
 {
 	QSpinBox *spinBox = this->parentWidget()->findChild<QSpinBox*>("spinBox");
+	QLabel *label = this->parentWidget()->findChild<QLabel*>("LoadingText");
+	label->setText("Loading... (please wait)");
+	label->update();
+	QWidget *parent = this->parentWidget();
+	QApplication::processEvents();
+	
 	_bezierPatchHandler->setBezierPatchNumber(spinBox->value());
+	QString str = QString::number(spinBox->value());
+	label->setText("Dimensions: " + str);
+	
 	update();
 }
 
@@ -130,9 +145,24 @@ void OpenGLWidget::randomize()
 	update();
 }
 
+void OpenGLWidget::animate(bool checked)
+{
+	if (checked)
+		_timer->start(5.0f);
+	else
+		_timer->stop();
+	_bezierPatchHandler->animate(checked);
+}
+
 void OpenGLWidget::wireFrame(bool checked)
 {
 	_handler->wireFrame(checked);
+	update();
+}
+
+void OpenGLWidget::controlPoints(bool checked)
+{
+	_handler->controlPoints(checked);
 	update();
 }
 
@@ -145,4 +175,9 @@ void OpenGLWidget::setBezierMode(int mode)
 		_handler = _bezierPatchHandler;
 	}
 	update();	
+}
+
+void OpenGLWidget::frequentUpdate()
+{
+	update();
 }

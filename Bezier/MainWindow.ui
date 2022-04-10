@@ -44,6 +44,13 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
            <item>
+            <widget class="QLabel" name="LoadingText">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2">
              <item>
               <widget class="QPushButton" name="pushButton">
@@ -71,6 +78,20 @@
             <widget class="QCheckBox" name="checkBox_3">
              <property name="text">
               <string>Wireframe</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>Show Control Points</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_4">
+             <property name="text">
+              <string>Animate</string>
              </property>
             </widget>
            </item>
@@ -238,30 +259,21 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_5">
+             <property name="text">
+              <string>show Control Point</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="title">
-           <string>Lights</string>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Randomize</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QSlider" name="horizontalSlider">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_2">
-             <property name="text">
-              <string>Lights calculation</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
          </widget>
         </item>
         <item>
@@ -330,6 +342,9 @@
     <slot>setBezierPatchColorMode()</slot>
     <slot>setBezierPatchMeshNumber()</slot>
     <slot>slot1()</slot>
+    <slot>animate(bool)</slot>
+    <slot>controlPoints(bool)</slot>
+    <slot>randomizeBezierCurve()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -344,8 +359,8 @@
    <slot>setBezierCurveColorMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>120</x>
-     <y>481</y>
+     <x>141</x>
+     <y>430</y>
     </hint>
     <hint type="destinationlabel">
      <x>423</x>
@@ -360,8 +375,8 @@
    <slot>setBezierCurveColorMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>531</y>
+     <x>109</x>
+     <y>497</y>
     </hint>
     <hint type="destinationlabel">
      <x>252</x>
@@ -376,8 +391,8 @@
    <slot>setBezierCurveColorMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>572</y>
+     <x>92</x>
+     <y>564</y>
     </hint>
     <hint type="destinationlabel">
      <x>278</x>
@@ -392,8 +407,8 @@
    <slot>wireFrame(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>47</x>
-     <y>207</y>
+     <x>68</x>
+     <y>277</y>
     </hint>
     <hint type="destinationlabel">
      <x>293</x>
@@ -440,8 +455,8 @@
    <slot>setBezierCurveMeshMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>106</x>
-     <y>144</y>
+     <x>127</x>
+     <y>179</y>
     </hint>
     <hint type="destinationlabel">
      <x>238</x>
@@ -456,8 +471,8 @@
    <slot>setBezierCurveSegmentNumber(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>91</x>
-     <y>105</y>
+     <x>139</x>
+     <y>126</y>
     </hint>
     <hint type="destinationlabel">
      <x>221</x>
@@ -472,8 +487,8 @@
    <slot>setBezierCurveSegmentLength(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>131</x>
-     <y>173</y>
+     <x>156</x>
+     <y>224</y>
     </hint>
     <hint type="destinationlabel">
      <x>260</x>
@@ -488,8 +503,8 @@
    <slot>curveMeshSlider()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>95</y>
+     <x>136</x>
+     <y>126</y>
     </hint>
     <hint type="destinationlabel">
      <x>184</x>
@@ -504,8 +519,8 @@
    <slot>curveMeshSlider()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>143</x>
-     <y>166</y>
+     <x>156</x>
+     <y>224</y>
     </hint>
     <hint type="destinationlabel">
      <x>185</x>
@@ -520,8 +535,8 @@
    <slot>curveMeshToggleButton()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>141</y>
+     <x>62</x>
+     <y>179</y>
     </hint>
     <hint type="destinationlabel">
      <x>5</x>
@@ -584,8 +599,8 @@
    <slot>setBezierPatchColorMode()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>546</y>
+     <x>105</x>
+     <y>564</y>
     </hint>
     <hint type="destinationlabel">
      <x>292</x>
@@ -600,8 +615,8 @@
    <slot>setBezierPatchMeshNumber()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>68</x>
-     <y>178</y>
+     <x>105</x>
+     <y>200</y>
     </hint>
     <hint type="destinationlabel">
      <x>234</x>
@@ -616,8 +631,8 @@
    <slot>wireFrame(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>87</x>
-     <y>290</y>
+     <x>108</x>
+     <y>253</y>
     </hint>
     <hint type="destinationlabel">
      <x>302</x>
@@ -638,6 +653,70 @@
     <hint type="destinationlabel">
      <x>237</x>
      <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>animate(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>controlPoints(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>213</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_5</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>controlPoints(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>103</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>265</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>randomizeBezierCurve()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>331</y>
     </hint>
    </hints>
   </connection>
