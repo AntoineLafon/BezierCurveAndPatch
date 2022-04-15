@@ -1,3 +1,10 @@
+#Work in progress on this branch
+
+This branch aim to provide an other way to compile the project using cmake
+For now it works on windows only with mingw, do not forget to set the Qt5_DIR 
+for exemple here is why i type: cmake .. -G "MinGW Makefiles" -Qt5_DIR="C:\Qt\5.15.2\mingw81_32\lib\cmake\Qt5"
+
+
 # BezierCurveAndPatch
 
 This is a small program to visualise bezier curves, and bezier patches written in C++ using OpenGL and QT5.
