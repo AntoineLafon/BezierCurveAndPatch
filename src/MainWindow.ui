@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindowClass</class>
+ <widget class="QMainWindow" name="MainWindowClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1078</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,4">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="BezierPatch">
+       <attribute name="title">
+        <string>Patch</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>Mesh</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QLabel" name="LoadingText">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Dimension selection:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,2">
+             <item>
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>Generate</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox">
+               <property name="minimum">
+                <number>10</number>
+               </property>
+               <property name="maximum">
+                <number>1000</number>
+               </property>
+               <property name="value">
+                <number>10</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_3">
+             <property name="text">
+              <string>Wireframe</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>Show Control Points</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_4">
+             <property name="text">
+              <string>Animate</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>Randomize</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Color Selection</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QRadioButton" name="NormalColorRadio_2">
+             <property name="text">
+              <string>Normal Color</string>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="PositionColorRadio_2">
+             <property name="text">
+              <string>Position Color</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="UVColorRadio_2">
+             <property name="text">
+              <string>UV Color</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="BezierCurve">
+       <attribute name="title">
+        <string>Curve</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Mesh</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <widget class="QRadioButton" name="radioButton_2">
+             <property name="text">
+              <string>Segment Number</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="numberText">
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>10</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="numberSlider">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>200</number>
+               </property>
+               <property name="value">
+                <number>10</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton">
+             <property name="text">
+              <string>Segment Length</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="lengthText">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>20</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>20</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>0.1</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="lengthSlider">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>200</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox">
+             <property name="text">
+              <string>Wireframe</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBox_5">
+             <property name="text">
+              <string>show Control Point</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Randomize</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Color Selection</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QRadioButton" name="NormalColorRadio">
+             <property name="text">
+              <string>Normal Color</string>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="PositionColorRadio">
+             <property name="text">
+              <string>Position Color</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="UVColorRadio">
+             <property name="text">
+              <string>UV Color</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="OpenGLWidget" name="openGLWidget"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>OpenGLWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>openglwidget.h</header>
+   <slots>
+    <slot>randomize()</slot>
+    <slot>setMode(int)</slot>
+    <slot>setColorMode()</slot>
+    <slot>setMeshMode()</slot>
+    <slot>wireFrame(bool)</slot>
+    <slot>setBezierCurveMeshMode()</slot>
+    <slot>setBezierCurveColorMode()</slot>
+    <slot>setBezierMode(int)</slot>
+    <slot>setBezierCurveSegmentNumber(int)</slot>
+    <slot>setBezierCurveSegmentLength(int)</slot>
+    <slot>setBezierPatchColorMode()</slot>
+    <slot>setBezierPatchMeshNumber()</slot>
+    <slot>slot1()</slot>
+    <slot>animate(bool)</slot>
+    <slot>controlPoints(bool)</slot>
+    <slot>randomizeBezierCurve()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="MainWindow.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>NormalColorRadio</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>430</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>423</x>
+     <y>460</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PositionColorRadio</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>497</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>520</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>UVColorRadio</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>564</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>278</x>
+     <y>582</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>wireFrame(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>293</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tabWidget</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierMode(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveMeshMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>321</x>
+     <y>73</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveMeshMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>127</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>141</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>numberSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveSegmentNumber(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>106</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lengthSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierCurveSegmentLength(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>260</x>
+     <y>178</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>numberSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>curveMeshSlider()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>88</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lengthSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>curveMeshSlider()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>185</x>
+     <y>172</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>curveMeshToggleButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindowClass</receiver>
+   <slot>curveMeshToggleButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>47</x>
+     <y>71</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>70</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>NormalColorRadio_2</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierPatchColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>232</x>
+     <y>410</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PositionColorRadio_2</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierPatchColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>98</x>
+     <y>481</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>480</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>UVColorRadio_2</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierPatchColorMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>564</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>292</x>
+     <y>549</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>setBezierPatchMeshNumber()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>234</x>
+     <y>169</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_3</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>wireFrame(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>302</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>randomize()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>101</x>
+     <y>332</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_4</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>animate(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>294</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>controlPoints(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>65</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>213</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_5</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>controlPoints(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>103</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>265</x>
+     <y>293</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>openGLWidget</receiver>
+   <slot>randomizeBezierCurve()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>RadioButtonClicked()</slot>
+  <slot>curveMeshToggleButton()</slot>
+  <slot>curveMeshSlider()</slot>
+ </slots>
+</ui>
